@@ -16,7 +16,7 @@ const gameboardSelector = document.querySelector('.gameboard');
 startSelector.addEventListener('click', startNewGame);
 
 function startNewGame() {
-  feedbackSelector.classList.add('hidden');
+  feedbackSelector.innerHTML = '';
   player1Selector.classList.remove('hidden');
   player2Selector.classList.remove('hidden');
 
@@ -25,11 +25,32 @@ function startNewGame() {
 }
 
 gameboardSelector.addEventListener('click', function(event) {
-  event.preventDefault();
 
   const square = event.target.getAttribute('data-id')
+  const currentPlayer = game.turn;
 
-  console.log(square)
-  // const square = event.target
+  game.quadrantChoice(square, currentPlayer)
+
+  updateBoardAfterChoice()
+  console.log(square, game[currentPlayer].token)
+  console.log(game.gameBoard)
+
+  game.alternateTurns();
+  updateFeedback();
+
 })
+
+function updateFeedback() {
+  if (game.feedback === 'NOPE') {
+    feedbackSelector.innerHTML = `${game.feedback}. You can't play a square more than once. Try another.`
+  }
+
+}
+
+function updateBoardAfterChoice() {
+  for (let [key, value] of Object.entries(game.gameBoard)) {
+    console.log(key, value)
+   document.querySelector(`.${key}`).innerHTML = `${value}`
+  }
+}
 

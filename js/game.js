@@ -2,25 +2,36 @@ class Game {
   constructor() {
     this.player1 = new Player('player1');
     this.player2 = new Player('player2');
-    this.gameBoard = []; // todo --> is this an array or an object??
+    this.gameBoard = {}; // todo --> is this an array or an object??
     this.turn = 'player1';
     this.winner = null;
     this.loser = null;
-    this.turnCount = 1;
+    this.turnCount = 0;
     this.feedback = '';
     this.feedbackPlayer = '';
   }
 
-  quadrantChoice() {
+  quadrantChoice(square, player) {
     // todo --> player makes a choice on the board. Need to know player and board location.
+    if (!(square in this.gameBoard)) {
+      this.gameBoard[square] = this[player].token
+    } else {
+      this.feedback = 'NOPE'
+    }
   }
 
   updateBoard() {
-    // todo --> when player makes a move, update the board. pass in player and move
+
   }
 
   alternateTurns() {
     // todo --> when player makes a choice, change turn to next player.
+    if (this.turnCount % 2 === 0) {
+      this.turn = 'player2'
+    } else {
+      this.turn = 'player1'
+    }
+    this.turnCount++
   }
 
   determineWinner() {

@@ -71,6 +71,9 @@ main {
       font-size: 2em;
       background: white;
       padding: 30px;
+      color: white;
+      width: 105px;
+      height: 105px;
     }
   }
 }
@@ -79,7 +82,6 @@ main {
   cursor: pointer;
 }
 
-// todo --> fix weirdness with r1s1 and r1s3 spacing making their separators bigger than others
 .r1s1 {
   margin: 0 5px 5px 0;
 }
