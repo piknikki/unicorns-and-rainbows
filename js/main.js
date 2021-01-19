@@ -11,6 +11,7 @@ const feedbackSelector = document.querySelector('.feedback-message');
 const startSelector = document.querySelector('button');
 const player1Selector = document.querySelector('.player1');
 const player2Selector = document.querySelector('.player2');
+const gameboardSelector = document.querySelector('.gameboard');
 
 startSelector.addEventListener('click', startNewGame);
 
@@ -21,4 +22,12 @@ function startNewGame() {
 
   game = new Game();
 }
+
+gameboardSelector.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  console.log(event.target)
+
+  // const square = event.target
+})
 
