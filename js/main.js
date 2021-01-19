@@ -21,13 +21,15 @@ function startNewGame() {
   player2Selector.classList.remove('hidden');
 
   game = new Game();
+  gameboardSelector.classList.add('add-cursor');
 }
 
 gameboardSelector.addEventListener('click', function(event) {
   event.preventDefault();
 
-  console.log(event.target)
+  const square = event.target.getAttribute('data-id')
 
+  console.log(square)
   // const square = event.target
 })
 
