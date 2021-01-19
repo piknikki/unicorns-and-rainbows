@@ -55,12 +55,61 @@ main {
 }
 
 /* *** gameboard *** */
+.gameboard {
+  background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+}
 .gameboard__row {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
 }
 .gameboard__row--square {
-  margin: 30px;
+  font-size: 2em;
+  background: white;
+  padding: 30px;
+  color: white;
+  width: 105px;
+  height: 105px;
+}
+
+.add-cursor {
+  cursor: pointer;
+}
+
+.r1s1 {
+  margin: 0 5px 5px 0;
+}
+
+.r1s2 {
+  margin: 0 5px 5px 5px;
+}
+
+.r1s3 {
+  margin: 0 0 5px 5px;
+}
+
+.r2s1 {
+  margin: 5px 5px 5px 0;
+}
+
+.r2s2 {
+  margin: 5px;
+}
+
+.r2s3 {
+  margin: 5px 0 5px 5px;
+}
+
+.r3s1 {
+  margin: 5px 5px 0 0;
+}
+
+.r3s2 {
+  margin: 5px 5px 0 5px;
+}
+
+.r3s3 {
+  margin: 5px 0 0 5px;
 }
 
 /* *** start button *** */
