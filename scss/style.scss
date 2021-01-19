@@ -9,13 +9,14 @@
 body {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   font-family: 'Raleway', sans-serif;
   height: 100vh;
 }
 
 header {
+  margin-top: 10px;
   display: flex;
   flex-flow: row nowrap;
   height: 100px;
@@ -24,17 +25,37 @@ header {
 }
 
 main {
-  //width: 100%;
-  //display: flex;
-  //flex-flow: row nowrap;
-  //justify-content: space-around;
-  //align-items: center;
+  width: 90%;
+  height: 80%;
+}
+
+.main-row,
+.button-row {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button-row {
+  margin: 20px 0;
 }
 
 .feedback-message {
   &__instructions {
     font-size: 1em;
   }
+}
+
+/* *** player scoreboard sections *** */
+.player1,
+.player2 {
+  align-self: flex-start;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 10px;
 }
 
 /* *** gameboard *** */
@@ -52,6 +73,15 @@ main {
   }
 }
 
+/* *** start button *** */
+.start {
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.8em;
+}
+
 /* *** footer *** */
 .content {
   display: flex;
@@ -67,11 +97,35 @@ main {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 /* *** mobile *** */
 @media screen and (max-width: 1000px) {
   header {
     padding: 30px 20px;
     height: auto;
+  }
+}
+
+// todo --> fix the alignment of player1 and player2 on smaller screens
+@media screen and (max-width: 800px) {
+  .main-row {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  .player1 {
+    order: 1;
+  }
+
+  .player2 {
+    order: 2;
+  }
+
+  .gameboard {
+    order: 5;
   }
 }
 

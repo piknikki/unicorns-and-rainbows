@@ -5,3 +5,20 @@
 // button to start a new game
 // highlighting to show who's turn it is
 // save data on player's side
+var game;
+
+const feedbackSelector = document.querySelector('.feedback-message');
+const startSelector = document.querySelector('button');
+const player1Selector = document.querySelector('.player1');
+const player2Selector = document.querySelector('.player2');
+
+startSelector.addEventListener('click', startNewGame);
+
+function startNewGame() {
+  feedbackSelector.classList.add('hidden');
+  player1Selector.classList.remove('hidden');
+  player2Selector.classList.remove('hidden');
+
+  game = new Game();
+}
+

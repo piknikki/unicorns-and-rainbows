@@ -10,39 +10,55 @@
 </head>
 <body>
   <header>
-        <span class="feedback-message">
-          <p class="feedback-message__instructions--p1">
-            Player 1 is Unicorns. 🦄
-          </p>
-          <p class="feedback-message__instructions--p2">
-            Player 2 is Rainbows. 🌈
-          </p>
-        </span>
+    <span class="feedback-message">
+      <p class="feedback-message__instructions--p1">
+        Player 1 is Unicorns. 🦄
+      </p>
+      <p class="feedback-message__instructions--p2">
+        Player 2 is Rainbows. 🌈
+      </p>
+    </span>
   </header>
 
   <main class="main">
-    <section class="gameboard">
-      <article class="gameboard__row r1">
-        <section class="gameboard__row--square r1s1">r1s1</section>
-        <section class="gameboard__row--square r1s2">r1s2</section>
-        <section class="gameboard__row--square r1s3">r1s3</section>
-      </article>
 
-      <article class="gameboard__row r2">
-        <section class="gameboard__row--square r2s1">r2s1</section>
-        <section class="gameboard__row--square r2s2">r2s2</section>
-        <section class="gameboard__row--square r2s3">r2s3</section>
-      </article>
+    <section class="main-row">
+      <section class="player1 hidden">
+        <div class="player1__title">Player 1 is Unicorns. 🦄</div>
+        <div class="player1__score"></div>
+      </section>
 
-      <article class="gameboard__row r3">
-        <section class="gameboard__row--square r3s1">r3s1</section>
-        <section class="gameboard__row--square r3s2">r3s2</section>
-        <section class="gameboard__row--square r3s3">r3s3</section>
-      </article>
+      <section class="gameboard">
+        <article class="gameboard__row r1">
+          <section class="gameboard__row--square r1s1">r1s1</section>
+          <section class="gameboard__row--square r1s2">r1s2</section>
+          <section class="gameboard__row--square r1s3">r1s3</section>
+        </article>
+
+        <article class="gameboard__row r2">
+          <section class="gameboard__row--square r2s1">r2s1</section>
+          <section class="gameboard__row--square r2s2">r2s2</section>
+          <section class="gameboard__row--square r2s3">r2s3</section>
+        </article>
+
+        <article class="gameboard__row r3">
+          <section class="gameboard__row--square r3s1">r3s1</section>
+          <section class="gameboard__row--square r3s2">r3s2</section>
+          <section class="gameboard__row--square r3s3">r3s3</section>
+        </article>
+
+      </section>
+
+      <section class="player2 hidden">
+        <div class="player2__title">Player 2 is Rainbows. 🌈</div>
+        <div class="player2__score"></div>
+      </section>
     </section>
-
-
   </main>
+
+  <section class="button-row">
+    <button class="start">Click here to start a new game</button>
+  </section>
 
   <footer>
     <section class="content">
