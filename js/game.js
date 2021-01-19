@@ -15,14 +15,18 @@ class Game {
     // todo --> player makes a choice on the board. Need to know player and board location.
     if (!(square in this.gameBoard)) {
       this.gameBoard[square] = this[player].token
-    } else {
-      this.feedback = 'NOPE'
+    } else if (square in this.gameBoard) {
+      this.feedback = 'nope'
+    } else if (this.turnCount === 8) {
+      this.feedback = 'full'
     }
+    this.alternateTurns()
+    this.determineWinner(player)
   }
 
-  updateBoard() {
-
-  }
+  // updateBoard() {
+  //
+  // }
 
   alternateTurns() {
     // todo --> when player makes a choice, change turn to next player.
@@ -32,10 +36,18 @@ class Game {
       this.turn = 'player1'
     }
     this.turnCount++
+    return this.turn;
   }
 
-  determineWinner() {
+  determineWinner(player) {
     // todo --> check this after every move. check if three in a row in any direction.
+    // todo --> make this a switch??
+
+    if (this.gameBoard.r1s1 === this.gameBoard.r2s2 && this.gameBoard.r1s1 === this.gameBoard.r3s3) {
+      this.winner = player
+      this.feedback = 'winner'
+    }
+
   }
 
   determineDraw() {
@@ -48,6 +60,12 @@ class Game {
 
   reset() {
     // todo --> resets board data but keeps players' tokens so they can keep playing.
+    this.gameBoard = {};
+    this.winner = null;
+    this.loser = null;
+    this.turnCount = 0;
+    this.feedback = '';
+    this.feedbackPlayer = '';
   }
 
 }

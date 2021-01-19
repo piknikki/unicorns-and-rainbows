@@ -15,15 +15,6 @@ const gameboardSelector = document.querySelector('.gameboard');
 
 startSelector.addEventListener('click', startNewGame);
 
-function startNewGame() {
-  feedbackSelector.innerHTML = '';
-  player1Selector.classList.remove('hidden');
-  player2Selector.classList.remove('hidden');
-
-  game = new Game();
-  gameboardSelector.classList.add('add-cursor');
-}
-
 gameboardSelector.addEventListener('click', function(event) {
 
   const square = event.target.getAttribute('data-id')
@@ -32,25 +23,61 @@ gameboardSelector.addEventListener('click', function(event) {
   game.quadrantChoice(square, currentPlayer)
 
   updateBoardAfterChoice()
-  console.log(square, game[currentPlayer].token)
+
   console.log(game.gameBoard)
 
-  game.alternateTurns();
   updateFeedback();
 
 })
 
+function startNewGame() {
+  updateBoardForNewGame()
+
+  feedbackSelector.innerHTML = '';
+  player1Selector.classList.remove('hidden');
+  player2Selector.classList.remove('hidden');
+  startSelector.classList.add('hidden');
+
+  game = new Game();
+  gameboardSelector.classList.add('add-cursor');
+}
+
 function updateFeedback() {
-  if (game.feedback === 'NOPE') {
-    feedbackSelector.innerHTML = `${game.feedback}. You can't play a square more than once. Try another.`
+  var chunk;
+
+  if (game.feedback === 'nope') {
+    chunk = `${game.feedback.toUpperCase()}. You can't play a square more than once. Try another.`
+
+  } else if (game.feedback === 'full' && !game.winner) {
+    chunk = `Draw. No winner. Try again.`
+    game.reset();
+    startSelector.classList.remove('hidden');
+
+  } else if (game.feedback === 'winner') {
+    chunk = `${formatName(game.winner)} is the ${game.feedback}!! Play again?`
+    startSelector.classList.remove('hidden');
+    game.reset();
+
+  } else {
+    chunk = ''
   }
 
+  feedbackSelector.innerHTML = chunk
 }
 
 function updateBoardAfterChoice() {
   for (let [key, value] of Object.entries(game.gameBoard)) {
-    console.log(key, value)
    document.querySelector(`.${key}`).innerHTML = `${value}`
   }
+}
+
+function formatName(name) {
+  return name.charAt(0).toUpperCase() + name.slice(1, 6) + " " + name[6]
+}
+
+function updateBoardForNewGame() {
+  var allSquares = document.querySelectorAll('.gameboard__row--square')
+
+  allSquares.forEach(square => square.innerHTML = '')
 }
 
