@@ -8,6 +8,6 @@ class Player {
   }
 
   saveWinsToStorage() {
-    // todo --> after doing this, add getItem to this.wins or maybe this.winBoards whatever works best
+    localStorage.setItem(this.id, JSON.stringify(this.wins))
   }
 }

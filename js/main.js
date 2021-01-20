@@ -1,10 +1,3 @@
-// global for game
-
-// selectors for each of the quadrants?
-// click events on each of quadrants. maybe use bubbling.
-// button to start a new game
-// highlighting to show who's turn it is
-// save data on player's side
 var game;
 
 const feedbackSelector = document.querySelector('.feedback-message');
@@ -23,15 +16,14 @@ gameboardSelector.addEventListener('click', function(event) {
   game.quadrantChoice(square, currentPlayer)
 
   updateBoardAfterChoice()
-
-  console.log(game.gameBoard)
+  game.determineWinner(currentPlayer)
 
   updateFeedback();
 
 })
 
 function startNewGame() {
-  updateBoardForNewGame()
+  updateBoardForNewGame();
 
   feedbackSelector.innerHTML = '';
   player1Selector.classList.remove('hidden');
@@ -40,6 +32,7 @@ function startNewGame() {
 
   game = new Game();
   gameboardSelector.classList.add('add-cursor');
+  updateWins();
 }
 
 function updateFeedback() {
@@ -48,7 +41,7 @@ function updateFeedback() {
   if (game.feedback === 'nope') {
     chunk = `${game.feedback.toUpperCase()}. You can't play a square more than once. Try another.`
 
-  } else if (game.feedback === 'full' && !game.winner) {
+  } else if (game.feedback === 'draw' && !game.winner) {
     chunk = `Draw. No winner. Try again.`
     game.reset();
     startSelector.classList.remove('hidden');
@@ -63,6 +56,7 @@ function updateFeedback() {
   }
 
   feedbackSelector.innerHTML = chunk
+  updateWins();
 }
 
 function updateBoardAfterChoice() {
@@ -77,7 +71,25 @@ function formatName(name) {
 
 function updateBoardForNewGame() {
   var allSquares = document.querySelectorAll('.gameboard__row--square')
-
   allSquares.forEach(square => square.innerHTML = '')
+}
+
+function updateWins() {
+  var winsp1 = JSON.parse(localStorage.getItem('player1'));
+  var winsp2 = JSON.parse(localStorage.getItem('player2'));
+
+  if (winsp1 != null) {
+    document.querySelector('.player1__score').innerHTML = `${winsp1} wins`
+    game.player1.wins = winsp1
+  } else {
+    document.querySelector('.player1__score').innerHTML = `0 wins`
+  }
+
+  if (winsp2 != null) {
+    document.querySelector('.player2__score').innerHTML = `${winsp2} wins`
+    game.player2.wins = winsp2
+  } else {
+    document.querySelector('.player2__score').innerHTML = `0 wins`
+  }
 }
 
