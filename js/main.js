@@ -23,7 +23,7 @@ gameboardSelector.addEventListener('click', function(event) {
   game.quadrantChoice(square, currentPlayer)
 
   updateBoardAfterChoice()
-
+  game.determineWinner(currentPlayer)
   console.log(game.gameBoard)
 
   updateFeedback();
