@@ -9,6 +9,7 @@ class Game {
     this.turnCount = 0;
     this.feedback = '';
     this.feedbackPlayer = '';
+    this.boardFull = false;
   }
 
   quadrantChoice(square, player) {
@@ -43,7 +44,7 @@ class Game {
   determineWinner(player) {
     // todo --> check this after every move. check if three in a row in any direction.
     // todo --> make this a switch??
-    debugger
+
     // if this returns false it means there is at least one empty square
     var h1 = this.checkForEmptySquares(['r1s1', 'r1s2', 'r1s3']);
     var h2 = this.checkForEmptySquares(['r2s1', 'r2s2', 'r2s3']);
@@ -55,6 +56,13 @@ class Game {
 
     var d1 = this.checkForEmptySquares(['r1s1', 'r2s2', 'r3s3']);
     var d2 = this.checkForEmptySquares(['r1s3', 'r2s2', 'r3s1']);
+
+    // check if board is full
+    this.determineDraw()  // returns true of board is full
+
+    // then check for matches
+
+    // if empty spaces, don't need to check for board full
 
     // should only check for win if there are no empty squares in the combination played
     var response;
@@ -88,15 +96,11 @@ class Game {
   }
 
   checkForEmptySquares(list) {
-
-    // list of three string values
     var response;
     list.forEach(val => {
       response = val in this.gameBoard
     })
 
-    // returns false if one of these keys is not in the object, which means there are one or more empty squares
-    // don't need to check for win if there are empty squares
     if (response === false) {
       return false
     } else {
@@ -106,6 +110,20 @@ class Game {
 
   determineDraw() {
     // todo --> check if no one has won. all quadrants are full and there are no three in a row
+    var keyCount = 0
+    for (let [key, value] of Object.entries(this.gameBoard)) {
+      // check all keys to be sure the board is full
+      // if not full, return false
+      keyCount++
+    }
+
+    if (keyCount < 9) {
+      // board isn't full
+      this.boardFull = false
+    } else {
+      // board is full
+      this.boardFull = true
+    }
   }
 
   saveWinBoard() {
