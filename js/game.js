@@ -89,6 +89,8 @@ class Game {
     if (response === true) {
       console.log(response)
       this.winner = player
+      this[player].wins++;
+      this[player].saveWinsToStorage();
       this.feedback = 'winner'
     } else {
       this.feedback = ''

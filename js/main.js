@@ -24,14 +24,13 @@ gameboardSelector.addEventListener('click', function(event) {
 
   updateBoardAfterChoice()
   game.determineWinner(currentPlayer)
-  console.log(game.gameBoard)
 
   updateFeedback();
 
 })
 
 function startNewGame() {
-  updateBoardForNewGame()
+  updateBoardForNewGame();
 
   feedbackSelector.innerHTML = '';
   player1Selector.classList.remove('hidden');
@@ -40,6 +39,7 @@ function startNewGame() {
 
   game = new Game();
   gameboardSelector.classList.add('add-cursor');
+  updateWins();
 }
 
 function updateFeedback() {
@@ -63,6 +63,7 @@ function updateFeedback() {
   }
 
   feedbackSelector.innerHTML = chunk
+  updateWins();
 }
 
 function updateBoardAfterChoice() {
@@ -79,5 +80,24 @@ function updateBoardForNewGame() {
   var allSquares = document.querySelectorAll('.gameboard__row--square')
 
   allSquares.forEach(square => square.innerHTML = '')
+}
+
+function updateWins() {
+  var winsp1 = JSON.parse(localStorage.getItem('player1'));
+  var winsp2 = JSON.parse(localStorage.getItem('player2'));
+
+  if (winsp1 != null) {
+    document.querySelector('.player1__score').innerHTML = `${winsp1} wins`
+    game.player1.wins = winsp1
+  } else {
+    document.querySelector('.player1__score').innerHTML = `0 wins`
+  }
+
+  if (winsp2 != null) {
+    document.querySelector('.player2__score').innerHTML = `${winsp2} wins`
+    game.player2.wins = winsp2
+  } else {
+    document.querySelector('.player2__score').innerHTML = `0 wins`
+  }
 }
 
