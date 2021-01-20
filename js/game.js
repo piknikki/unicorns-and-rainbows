@@ -26,12 +26,7 @@ class Game {
     // this.determineWinner(player)
   }
 
-  // updateBoard() {
-  //
-  // }
-
   alternateTurns() {
-    // todo --> when player makes a choice, change turn to next player.
     if (this.turnCount % 2 === 0) {
       this.turn = 'player2'
     } else {
@@ -133,7 +128,6 @@ class Game {
   }
 
   reset() {
-    // todo --> resets board data but keeps players' tokens so they can keep playing.
     this.gameBoard = {};
     this.winner = null;
     this.loser = null;
