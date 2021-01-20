@@ -52,14 +52,6 @@ class Game {
     var d1 = this.checkForEmptySquares(['r1s1', 'r2s2', 'r3s3']);
     var d2 = this.checkForEmptySquares(['r1s3', 'r2s2', 'r3s1']);
 
-    // check if board is full
-    this.determineDraw()  // returns true of board is full
-
-    // then check for matches
-
-    // if empty spaces, don't need to check for board full
-
-    // should only check for win if there are no empty squares in the combination played
     var response;
     if (h1 === true && (this.gameBoard.r1s1 === this.gameBoard.r1s2 && this.gameBoard.r1s2 === this.gameBoard.r1s3)) {
       response = true
@@ -78,6 +70,7 @@ class Game {
     } else if (d2 === true && (this.gameBoard.r1s3 === this.gameBoard.r2s2 && this.gameBoard.r2s2 === this.gameBoard.r3s1)) {
       response = true
     } else {
+      this.determineDraw()
       response = false
     }
 
@@ -87,6 +80,8 @@ class Game {
       this[player].wins++;
       this[player].saveWinsToStorage();
       this.feedback = 'winner'
+    } else if (this.boardFull === true) {
+      this.feedback = 'draw'
     } else {
       this.feedback = ''
     }
@@ -103,6 +98,10 @@ class Game {
     } else {
       return true
     }
+  }
+
+  checkForMatches() {
+
   }
 
   determineDraw() {

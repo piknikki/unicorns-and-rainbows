@@ -41,7 +41,7 @@ function updateFeedback() {
   if (game.feedback === 'nope') {
     chunk = `${game.feedback.toUpperCase()}. You can't play a square more than once. Try another.`
 
-  } else if (game.feedback === 'full' && !game.winner) {
+  } else if (game.feedback === 'draw' && !game.winner) {
     chunk = `Draw. No winner. Try again.`
     game.reset();
     startSelector.classList.remove('hidden');
